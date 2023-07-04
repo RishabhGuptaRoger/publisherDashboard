@@ -2,7 +2,6 @@
     <div class="card-header">
         <h3 class="card-title">Add Advertiser</h3>
         <div class="card-toolbar">
-            <!-- You can put any action here, maybe closing the modal or something similar -->
             <button type="button" class="btn btn-sm btn-light" wire:click.prevent="closeModal">
                 Close
             </button>
@@ -23,9 +22,6 @@
     <div class="card-footer">
         <button type="button" class="btn btn-light" wire:click.prevent="store">
             Save
-        </button>
-        <button type="button" class="btn btn-dark" wire:click.prevent="closeModal">
-            Cancel
         </button>
     </div>
 </div>

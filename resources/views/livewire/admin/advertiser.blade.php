@@ -2,8 +2,7 @@
     @if($isOpen)
         @include('livewire.admin.create')
     @endif
-    <button wire:click="openModal()" type="button" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#kt_modal_1">
+    <button wire:click="openModals()" type="button" class="btn btn-primary" data-bs-toggle="modal">
         Add Advertiser
     </button>
     <table class="table mb-10">

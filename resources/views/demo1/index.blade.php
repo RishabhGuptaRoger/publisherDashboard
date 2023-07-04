@@ -28,6 +28,8 @@
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="/demo1/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
     <link href="/demo1/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
     <!--end::Global Stylesheets Bundle-->
     @livewireStyles
 </head>
@@ -8994,6 +8996,9 @@
                             <div class="page-title d-flex flex-column justify-content-center flex-wrap mt-10">
                                 <!-- Include livewire.admin.create -->
                                 @livewire('admin.advertiser')
+                            </div>
+                            <div>
+                                @livewire('admin.file-upload')
                             </div>
 
                             <!--end::Breadcrumb-->

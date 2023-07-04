@@ -31,6 +31,13 @@ class Advertiser extends Component
     public function openModal()
     {
         $this->isOpen = true;
+
+    }
+    public function openModals()
+    {
+        $this->isOpen = true;
+        $this->resetInputFields();
+
     }
 
     public function closeModal()
