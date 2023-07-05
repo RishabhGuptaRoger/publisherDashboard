@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Livewire\Admin;
 use Illuminate\Support\Facades\Hash;
 

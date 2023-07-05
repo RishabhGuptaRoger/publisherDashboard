@@ -24,10 +24,8 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('demo1.index');
+        return view('admin.index');
     })->name('dashboard');
-
-//    Route::get('/admin/advertisers', Advertiser::class)->name('admin.advertisers');
 });
 
 

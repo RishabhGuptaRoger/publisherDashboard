@@ -17,7 +17,7 @@ class FileUpload extends Component
     public function save()
     {
         $this->validate([
-            'file' => 'required|file|max:1024000', // 1000MB Max
+            'file' => 'required|file|max:102', // 1000MB Max
         ]);
 
         $this->file->store('files');
