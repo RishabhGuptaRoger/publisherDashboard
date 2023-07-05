@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Admin\Advertiser;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\ShowOffers;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('admin.index');
     })->name('dashboard');
+    Route::get('show-offers/{id}', function($id) {
+        return view('admin.show-offers', ['id' => $id]);
+    })->name('admin.show-offers');
 });
 
 

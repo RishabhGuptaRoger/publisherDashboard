@@ -20,6 +20,7 @@ class Advertiser extends Component
             'advertisers' => User::paginate(10)
         ]);
     }
+
     public function create()
     {
         $this->resetInputFields();
@@ -79,7 +80,7 @@ class Advertiser extends Component
         $this->email = $user->email;
 
         $this->mode = 'edit';
-        $this->openModal();
+        $this->openMoal();
     }
     public function delete($id)
     {

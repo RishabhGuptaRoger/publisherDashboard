@@ -52,6 +52,11 @@
                             class="btn btn-danger btn-sm ml-2">Delete
                     </button>
                 </td>
+                <td>
+                    <a href="{{ route('admin.show-offers', $advertiser->id) }}" class="btn btn-info btn-sm">View Offers</a>
+
+                </td>
+
             </tr>
             @endforeach
         </tbody>
