@@ -80,7 +80,7 @@ class Advertiser extends Component
         $this->email = $user->email;
 
         $this->mode = 'edit';
-        $this->openMoal();
+        $this->openModal();
     }
     public function delete($id)
     {

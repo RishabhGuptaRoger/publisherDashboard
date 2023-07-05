@@ -18,7 +18,6 @@
 
                         </button>&nbsp;&nbsp;
 
-
                     <button type="button" class="btn btn-sm btn-light" wire:click.prevent="closeModal">
                         Close
                     </button>
