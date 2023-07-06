@@ -2,8 +2,15 @@
     @if($isOpen)
         <div class="card shadow-sm">
             <div class="card-header">
-                <h3 class="card-title">Add Advertiser</h3>
+                <div wire:loading class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <h3 class="card-title">{{ $mode == 'edit' ? 'Edit Advertiser' : 'Add Advertiser' }}</h3>
                 <div class="card-toolbar">
+
+                        <button type="button" class="btn btn-sm btn-primary" wire:click.prevent="{{ $mode == 'edit' ? 'store' : 'store' }}">
+                            {{ $mode == 'edit' ? 'Update' : 'Save' }}
+                        </button>&nbsp;&nbsp;
                     <button type="button" class="btn btn-sm btn-light" wire:click.prevent="closeModal">
                         Close
                     </button>
@@ -13,18 +20,16 @@
                 <form>
                     <div class="mb-4">
                         <label for="name" class="text-gray-700 text-sm font-bold mb-2">Name:</label>
-                        <input type="text" class="form-control form-control-solid" placeholder="Name" wire:model="name"/>
+                        <input type="text" class="form-control form-control-solid @error('name') is-invalid @enderror" placeholder="Name" wire:model="name"/>
+                        @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="mb-4">
                         <label for="email" class="text-gray-700 text-sm font-bold mb-2">Email:</label>
-                        <input type="email" class="form-control" placeholder="name@example.com" wire:model="email"/>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="name@example.com" wire:model="email"/>
+                        @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+
                     </div>
                 </form>
-            </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-light" wire:click.prevent="store">
-                    Save
-                </button>
             </div>
         </div>
     @endif
@@ -45,9 +50,7 @@
                 <td>{{ $advertiser->name }}</td>
                 <td>{{ $advertiser->email }}</td>
                 <td>
-                    <button type="button" wire:click.prevent="edit({{ $advertiser->id }})"
-                            class="btn btn-primary btn-sm">Edit
-                    </button>
+                    <button type="button" wire:click="edit({{ $advertiser->id }})" class="btn btn-primary btn-sm">Edit</button>
                     <button type="button" wire:click.prevent="delete({{ $advertiser->id }})"
                             class="btn btn-danger btn-sm ml-2">Delete
                     </button>

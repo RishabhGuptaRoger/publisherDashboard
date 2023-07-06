@@ -10,7 +10,7 @@ class Advertiser extends Component
 {
     use WithPagination;
 
-    public $name, $email,$user_id;
+    public $name, $email, $user_id;
     public $isOpen = 0;
     public $mode = 'create';
 
@@ -82,10 +82,12 @@ class Advertiser extends Component
         $this->mode = 'edit';
         $this->openModal();
     }
+
     public function delete($id)
     {
         User::find($id)->delete();
         session()->flash('message', 'Advertiser deleted successfully.');
     }
 }
+
 

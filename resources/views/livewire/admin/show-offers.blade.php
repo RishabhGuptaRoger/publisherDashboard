@@ -3,20 +3,15 @@
     @if($isOpen)
         <div class="card shadow-sm">
             <div class="card-header">
-                <div wire:loading>
-                    loading
+                <div wire:loading class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
                 </div>
                 <h3 class="card-title">{{ $mode == 'edit' ? 'Edit Offer' : 'Add Offer' }}</h3>
                 <div class="card-toolbar">
-                    @if (session()->has('message'))
-                        <span class="text-green-600">{{ session('message') }}</span>
-                    @endif
-                        @error('name') <span class="text-red-600">{{ $message }}</span> @enderror
-                        @error('payout') <span class="text-red-600">{{ $message }}</span> @enderror
                     <button  type="button" class="btn btn-sm btn-primary" wire:click.prevent="{{ $mode == 'edit' ? 'updateOffer' : 'storeOffer' }}">
-                            {{ $mode == 'edit' ? 'Update' : 'Save' }}
+                        {{ $mode == 'edit' ? 'Update' : 'Save' }}
 
-                        </button>&nbsp;&nbsp;
+                    </button>&nbsp;&nbsp;
 
                     <button type="button" class="btn btn-sm btn-light" wire:click.prevent="closeModal">
                         Close
@@ -27,15 +22,18 @@
                 <form>
                     <div class="mb-4">
                         <label for="name" class="text-gray-700 text-sm font-bold mb-2">Name:</label>
-                        <input type="text" class="form-control form-control-solid" placeholder="Name" wire:model="name"/>
+                        <input type="text" class="form-control form-control-solid @error('name') is-invalid @enderror" placeholder="Name" wire:model="name"/>
+                        @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="mb-4">
                         <label for="geo" class="text-gray-700 text-sm font-bold mb-2">Geo:</label>
-                        <input type="text" class="form-control" placeholder="Geo" wire:model="geo"/>
+                        <input type="text" class="form-control @error('geo') is-invalid @enderror" placeholder="Geo" wire:model="geo"/>
+                        @error('geo') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="mb-4">
                         <label for="payout" class="text-gray-700 text-sm font-bold mb-2">Payout:</label>
-                        <input type="number" class="form-control" placeholder="Payout" wire:model="payout"/>
+                        <input type="number" class="form-control @error('payout') is-invalid @enderror" placeholder="Payout" wire:model="payout"/>
+                        @error('payout') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </form>
             </div>

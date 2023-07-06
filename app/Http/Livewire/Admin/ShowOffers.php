@@ -83,7 +83,7 @@ class ShowOffers extends Component
 
         // Reset the form fields and close the modal
         $this->reset('name', 'geo', 'payout');
-        $this->isOpen = false;
+        $this->isOpen = True;
         $this->mode = 'create';
         session()->flash('message', 'Successfully updated.');
 
