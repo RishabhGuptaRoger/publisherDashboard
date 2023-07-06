@@ -37,7 +37,7 @@ class Advertiser extends Component
     {
         $this->isOpen = true;
         $this->resetInputFields();
-
+        $this->mode = 'create';
     }
 
     public function closeModal()

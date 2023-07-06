@@ -38,8 +38,9 @@
         <div id="kt_app_content_container" class="app-container container-fluid">
             <!--begin::Row-->
             <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-            {{-- begin content--}}
-
+                {{-- begin content--}}
+                @livewire('admin.advertiser')
+                @livewire('admin.file-upload')
             </div>
         </div>
         <!--end::Content container-->

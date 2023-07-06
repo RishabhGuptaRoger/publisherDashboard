@@ -1,15 +1,15 @@
 <div>
-    <h2>Offers for {{ $user->name }}</h2>
+    <h2>Documents for {{ $user->name }}</h2>
     @if($isOpen)
         <div class="card shadow-sm">
             <div class="card-header">
                 <div wire:loading class="spinner-border text-primary" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
-                <h3 class="card-title">{{ $mode == 'edit' ? 'Edit Offer' : 'Add Offer' }}</h3>
+                <h3 class="card-title">{{ $mode == 'edit' ? 'Edit Document' : 'Add Document' }}</h3>
                 <div class="card-toolbar">
                     <button type="button" class="btn btn-sm btn-primary"
-                            wire:click.prevent="{{ $mode == 'edit' ? 'updateOffer' : 'storeOffer' }}">
+                            wire:click.prevent="{{ $mode == 'edit' ? 'updateDoc' : 'storeDoc' }}">
                         {{ $mode == 'edit' ? 'Update' : 'Save' }}
 
                     </button>&nbsp;&nbsp;
@@ -21,24 +21,24 @@
             <div class="card-body">
                 <form>
                     <div class="mb-4">
-                        <label for="name" class="text-gray-700 text-sm font-bold mb-2">Name:</label>
-                        <input type="text" class="form-control form-control @error('name') is-invalid @enderror"
-                               placeholder="Name" wire:model="name"/>
-                        @error('name')
+                        <label for="start_date" class="text-gray-700 text-sm font-bold mb-2">Start Date:</label>
+                        <input type="date" class="form-control form-control @error('start_date') is-invalid @enderror"
+                               placeholder="Start Date" wire:model="start_date"/>
+                        @error('start_date')
                         <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="mb-4">
-                        <label for="geo" class="text-gray-700 text-sm font-bold mb-2">Geo:</label>
-                        <input type="text" class="form-control @error('geo') is-invalid @enderror" placeholder="Geo"
-                               wire:model="geo"/>
-                        @error('geo')
+                        <label for="end_date" class="text-gray-700 text-sm font-bold mb-2">End Date:</label>
+                        <input type="date" class="form-control @error('end_date') is-invalid @enderror" placeholder="End Date"
+                               wire:model="end_date"/>
+                        @error('end_date')
                         <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="mb-4">
-                        <label for="payout" class="text-gray-700 text-sm font-bold mb-2">Payout:</label>
-                        <input type="number" class="form-control @error('payout') is-invalid @enderror"
-                               placeholder="Payout" wire:model="payout"/>
-                        @error('payout')
+                        <label for="geos" class="text-gray-700 text-sm font-bold mb-2">Geos:</label>
+                        <input type="text" class="form-control @error('geos') is-invalid @enderror"
+                               placeholder="Geos" wire:model="geos"/>
+                        @error('geos')
                         <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </form>
@@ -46,28 +46,28 @@
         </div>
     @endif
     <button wire:click="openModals" type="button" class="btn btn-primary" data-bs-toggle="modal">
-        Add Offer
+        Add Document
     </button>
     <table class="table">
         <thead>
         <tr class="fw-bold fs-6 text-gray-800">
-            <th>Name</th>
-            <th>Geo</th>
-            <th>Payout</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Geos</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($offers as $offer)
+        @foreach($docs as $doc)
             <tr>
-                <td>{{ $offer->name }}</td>
-                <td>{{ $offer->geo }}</td>
-                <td>{{ $offer->payout }}</td>
+                <td>{{ $doc->start_date }}</td>
+                <td>{{ $doc->end_date }}</td>
+                <td>{{ $doc->geos }}</td>
                 <td>
-                    <button type="button" wire:click.prevent="edit({{ $offer->id }})" class="btn btn-primary btn-sm">
+                    <button type="button" wire:click.prevent="edit({{ $doc->id }})" class="btn btn-primary btn-sm">
                         Edit
                     </button>
-                    <button type="button" wire:click.prevent="delete({{ $offer->id }})"
+                    <button type="button" wire:click.prevent="delete({{ $doc->id }})"
                             class="btn btn-danger btn-sm ml-2">Delete
                     </button>
                 </td>
@@ -75,5 +75,5 @@
         @endforeach
         </tbody>
     </table>
-    {{ $offers->links() }}
+    {{ $docs->links() }}
 </div>

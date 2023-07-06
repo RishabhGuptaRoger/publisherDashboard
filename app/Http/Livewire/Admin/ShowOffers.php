@@ -25,7 +25,12 @@ class ShowOffers extends Component
     {
         $this->isOpen = true;
     }
-
+    public function openModals()
+    {
+        $this->isOpen = true;
+        $this->reset('name', 'geo', 'payout');
+        $this->mode = 'create';
+    }
     public function closeModal()
     {
         $this->isOpen = false;

@@ -54,7 +54,10 @@
                     <button type="button" wire:click.prevent="delete({{ $advertiser->id }})"
                             class="btn btn-danger btn-sm ml-2">Delete
                     </button>
+                    <a href="{{ route('admin.show-docs',$advertiser->id) }}" class="btn btn-info btn-sm">Open Docs</a>
+
                 </td>
+
                 <td>
                     <a href="{{ route('admin.show-offers', $advertiser->id) }}" class="btn btn-info btn-sm">View Offers</a>
 
