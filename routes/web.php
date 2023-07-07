@@ -36,7 +36,7 @@ Route::middleware([
         return view('admin.show-offers', ['id' => $id]);
     })->name('admin.show-offers');
 
-Route::get('show-docs/{id}', function($id) {
+Route::get('show-docs/  {id}', function($id) {
         return view('admin.show-docs', ['id' => $id]);
     })->name('admin.show-docs');
 });

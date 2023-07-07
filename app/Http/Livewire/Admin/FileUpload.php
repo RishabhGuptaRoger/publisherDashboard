@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\Admin;
 
-namespace App\Http\Livewire\Admin;
-
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -17,10 +15,10 @@ class FileUpload extends Component
     public function save()
     {
         $this->validate([
-            'file' => 'required|file|max:102', // 1000MB Max
+            'file' => 'required|file|max:1024000', // 1000MB Max
         ]);
 
-        $this->file->store('files');
+        $this->file->store('advertiser', 'public');
 
         $this->uploadSuccessful = true;
     }
