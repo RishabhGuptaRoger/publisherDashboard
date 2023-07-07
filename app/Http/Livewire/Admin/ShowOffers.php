@@ -11,7 +11,7 @@ class ShowOffers extends Component
     public $user;
     public $isOpen = false;
     public $name;
-    public $geo;
+    public $geo = 'all';
     public $payout;
     public $offer_id;
     public $mode = 'create';

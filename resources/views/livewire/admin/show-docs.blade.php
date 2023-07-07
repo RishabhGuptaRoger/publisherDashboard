@@ -29,15 +29,36 @@
                     </div>
                     <div class="mb-4">
                         <label for="end_date" class="text-gray-700 text-sm font-bold mb-2">End Date:</label>
-                        <input type="date" class="form-control @error('end_date') is-invalid @enderror" placeholder="End Date"
+                        <input type="date" class="form-control @error('end_date') is-invalid @enderror"
+                               placeholder="End Date"
                                wire:model="end_date"/>
                         @error('end_date')
                         <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="mb-4">
                         <label for="geos" class="text-gray-700 text-sm font-bold mb-2">Geos:</label>
-                        <input type="text" class="form-control @error('geos') is-invalid @enderror"
-                               placeholder="Geos" wire:model="geos"/>
+                        <select class="form-control @error('geos') is-invalid @enderror" wire:model="geos">
+                            <option value="all">All</option>
+                            <option value="algeria">Algeria</option>
+                            <option value="bahrain">Bahrain</option>
+                            <option value="cyprus">Cyprus</option>
+                            <option value="egypt">Egypt</option>
+                            <option value="greece">Greece</option>
+                            <option value="indonesia">Indonesia</option>
+                            <option value="iraq">Iraq</option>
+                            <option value="jordan">Jordan</option>
+                            <option value="ksa">KSA</option>
+                            <option value="kuwait">Kuwait</option>
+                            <option value="nepal">Nepal</option>
+                            <option value="nigeria">Nigeria</option>
+                            <option value="oman">Oman</option>
+                            <option value="palestine">Palestine</option>
+                            <option value="poland">Poland</option>
+                            <option value="qatar">Qatar</option>
+                            <option value="sweden">Sweden</option>
+                            <option value="thailand">Thailand</option>
+                            <option value="uae">UAE</option>
+                        </select>
                         @error('geos')
                         <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
