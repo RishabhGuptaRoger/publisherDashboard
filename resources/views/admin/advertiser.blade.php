@@ -40,7 +40,6 @@
             <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                 {{-- begin content--}}
                 @livewire('admin.advertiser')
-                @livewire('admin.file-upload')
             </div>
         </div>
         <!--end::Content container-->

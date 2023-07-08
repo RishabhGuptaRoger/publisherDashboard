@@ -14,6 +14,7 @@ class Doc extends Model
         'start_date',
         'end_date',
         'geos',
+        'file_path',
     ];
 
     public function user()

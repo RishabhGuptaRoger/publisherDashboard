@@ -3,11 +3,16 @@
 namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\User;
 use App\Models\Doc;
+use Illuminate\Support\Facades\Storage;
+use Exception;
 
 class ShowDocs extends Component
 {
+    use WithFileUploads;
+
     public $user;
     public $isOpen = false;
     public $start_date;
@@ -15,6 +20,9 @@ class ShowDocs extends Component
     public $geos = 'all';
     public $doc_id;
     public $mode = 'create';
+
+    public $file;
+    public $uploadSuccessful = false;
 
     public function mount(User $user)
     {
@@ -44,17 +52,28 @@ class ShowDocs extends Component
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'geos' => 'required',
+            'file' => 'file|max:1024000', // 1000MB Max
         ]);
 
-        $this->user->doc()->create([
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
-            'geos' => $this->geos,
-        ]);
+        if($this->file) {
+            $filePath = $this->file->store('advertiser', 'public');
 
-        $this->reset('start_date', 'end_date', 'geos');
-        $this->isOpen = false;
-        $this->mode = 'create';
+            $this->user->doc()->create([
+                'start_date' => $this->start_date,
+                'end_date' => $this->end_date,
+                'geos' => $this->geos,
+                'file_path' => $filePath, // Store the file path
+            ]);
+
+            $this->reset('start_date', 'end_date', 'geos', 'file');
+            $this->isOpen = false;
+            $this->mode = 'create';
+            $this->uploadSuccessful = true; // Set uploadSuccessful to true
+
+            session()->flash('message', 'Document successfully saved.');
+        } else {
+            session()->flash('error', 'File is required.');
+        }
     }
 
     public function edit($id)
@@ -76,24 +95,51 @@ class ShowDocs extends Component
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'geos' => 'required',
+            'file' => 'file|max:1024000', // 1000MB Max
         ]);
 
-        $doc = Doc::findOrFail($this->doc_id);
-        $doc->update([
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
-            'geos' => $this->geos,
-        ]);
+        if($this->file) {
 
-        $this->reset('start_date', 'end_date', 'geos');
-        $this->isOpen = false;
-        $this->mode = 'create';
+            $doc = Doc::findOrFail($this->doc_id);
+
+
+            // Upload new file
+            $filePath = $this->file->store('advertiser', 'public'); // Store the file
+
+            $doc->update([
+                'start_date' => $this->start_date,
+                'end_date' => $this->end_date,
+                'geos' => $this->geos,
+                'file_path' => $filePath, // Store the file path
+            ]);
+
+            $this->reset('start_date', 'end_date', 'geos', 'file');
+            $this->isOpen = false;
+            $this->mode = 'create';
+            $this->uploadSuccessful = true; // Set uploadSuccessful to true
+
+            session()->flash('message', 'Document successfully updated.');
+        } else {
+            session()->flash('error', 'File is required.');
+        }
     }
 
     public function delete($id)
     {
-        $doc = Doc::find($id);
-        $doc->delete();
+        try {
+            $doc = Doc::find($id);
+
+            // Delete the file associated with the doc
+            if (Storage::disk('public')->exists($doc->file_path)) {
+                Storage::disk('public')->delete($doc->file_path);
+            }
+
+            $doc->delete();
+
+            session()->flash('message', 'Document successfully deleted.');
+        } catch (Exception $e) {
+            session()->flash('error', 'There was an error deleting the document: ' . $e->getMessage());
+        }
     }
 
     public function render()

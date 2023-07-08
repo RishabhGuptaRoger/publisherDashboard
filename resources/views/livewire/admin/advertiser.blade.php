@@ -20,12 +20,12 @@
                 <form>
                     <div class="mb-4">
                         <label for="name" class="text-gray-700 text-sm font-bold mb-2">Name:</label>
-                        <input type="text" class="form-control form-control-solid @error('name') is-invalid @enderror" placeholder="Name" wire:model="name"/>
+                        <input type="text" class="form-control form-control-solid @error('name') is-invalid @enderror" placeholder="Name" wire:model.defer="name"/>
                         @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="mb-4">
                         <label for="email" class="text-gray-700 text-sm font-bold mb-2">Email:</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="name@example.com" wire:model="email"/>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="name@example.com" wire:model.defer="email"/>
                         @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
 
                     </div>
