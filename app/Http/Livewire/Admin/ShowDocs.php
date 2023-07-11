@@ -95,33 +95,37 @@ class ShowDocs extends Component
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'geos' => 'required',
-            'file' => 'file|max:1024000', // 1000MB Max
+            'file' => $this->file ? 'file|max:1024000' : '',
         ]);
 
+        $doc = Doc::findOrFail($this->doc_id);
+
+        $filePath = $doc->file_path; // Keep the old file path
+
+        // Only handle file upload if a new file is provided
         if($this->file) {
-
-            $doc = Doc::findOrFail($this->doc_id);
-
+            // Delete the old file
+            if (Storage::disk('public')->exists($doc->file_path)) {
+                Storage::disk('public')->delete($doc->file_path);
+            }
 
             // Upload new file
-            $filePath = $this->file->store('advertiser', 'public'); // Store the file
+            $filePath = $this->file->store('advertiser', 'public'); // Store the new file
 
-            $doc->update([
-                'start_date' => $this->start_date,
-                'end_date' => $this->end_date,
-                'geos' => $this->geos,
-                'file_path' => $filePath, // Store the file path
-            ]);
-
-            $this->reset('start_date', 'end_date', 'geos', 'file');
-            $this->isOpen = false;
-            $this->mode = 'create';
             $this->uploadSuccessful = true; // Set uploadSuccessful to true
-
-            session()->flash('message', 'Document successfully updated.');
-        } else {
-            session()->flash('error', 'File is required.');
         }
+
+        $doc->update([
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'geos' => $this->geos,
+            'file_path' => $filePath, // Store the file path (either old or new)
+        ]);
+
+        $this->isOpen = false;
+        $this->mode = 'create';
+
+        session()->flash('message', 'Document successfully updated.');
     }
 
     public function delete($id)

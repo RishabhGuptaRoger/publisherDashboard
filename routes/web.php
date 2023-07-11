@@ -29,16 +29,21 @@ Route::middleware([
         return view('admin.index');
     })->name('dashboard');
 
-    Route::get('/advertiser', function () {
-        return view('admin.advertiser');
-    })->name('advertiser');
-    Route::get('show-offers/{id}', function($id) {
-        return view('admin.show-offers', ['id' => $id]);
-    })->name('admin.show-offers');
+    Route::prefix('admin')->group(function () {
 
-Route::get('show-docs/  {id}', function($id) {
-        return view('admin.show-docs', ['id' => $id]);
-    })->name('admin.show-docs');
+        Route::get('/advertiser', function () {
+            return view('admin.advertiser');
+        })->name('advertiser');
+
+        Route::get('show-offers/{id}', function($id) {
+            return view('admin.show-offers', ['id' => $id]);
+        })->name('admin.show-offers');
+
+        Route::get('show-docs/{id}', function($id) {
+            return view('admin.show-docs', ['id' => $id]);
+        })->name('admin.show-docs');
+    });
 });
+
 
 

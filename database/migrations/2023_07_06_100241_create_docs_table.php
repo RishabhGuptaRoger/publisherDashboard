@@ -16,7 +16,6 @@ class CreateDocsTable extends Migration
             $table->text('geos');
             $table->string('file_path')->nullable();
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

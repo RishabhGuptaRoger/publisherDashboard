@@ -25,12 +25,14 @@ class ShowOffers extends Component
     {
         $this->isOpen = true;
     }
+
     public function openModals()
     {
         $this->isOpen = true;
         $this->reset('name', 'geo', 'payout');
         $this->mode = 'create';
     }
+
     public function closeModal()
     {
         $this->isOpen = false;
@@ -55,6 +57,9 @@ class ShowOffers extends Component
         $this->reset('name', 'geo', 'payout');
         $this->isOpen = false;
         $this->mode = 'create';
+
+        // Flash message
+        session()->flash('message', 'Offer successfully created.');
     }
 
     public function edit($id)
@@ -86,19 +91,20 @@ class ShowOffers extends Component
             'payout' => $this->payout,
         ]);
 
-        // Reset the form fields and close the modal
-        $this->reset('name', 'geo', 'payout');
         $this->isOpen = True;
-        $this->mode = 'create';
+        $this->mode = 'edit';
+
+        // Flash message
         session()->flash('message', 'Successfully updated.');
-
-
     }
 
     public function delete($id)
     {
         $offer = Offer::find($id);
         $offer->delete();
+
+        // Flash message
+        session()->flash('message', 'Offer successfully deleted.');
     }
 
     public function render()

@@ -1,5 +1,12 @@
 <div>
     <h2>Offers for {{ $user->name }}</h2>
+
+    <!-- Display Session Messages -->
+    @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
     @if($isOpen)
         <div class="card shadow-sm">
             <div class="card-header">
