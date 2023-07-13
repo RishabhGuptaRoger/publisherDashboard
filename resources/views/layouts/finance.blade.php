@@ -118,47 +118,6 @@
 
 
                             <!--begin:User item-->
-                            <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                                 data-kt-menu-placement="bottom-start"
-                                 class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
-                                <!--begin:Menu link-->
-                                <span class="menu-link">
-        <span class="menu-title">User Profile</span>
-        <span class="menu-arrow d-lg-none"></span>
-    </span>
-                                <!--end:Menu link-->
-                                <!--begin:Menu sub-->
-                                <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-200px">
-
-                                    <!-- User Authentication -->
-                                    @if(Auth::check())
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('profile.show') }}">
-                                                <span class="menu-icon"><i class="ki-duotone ki-user fs-2"></i></span>
-                                                <span class="menu-title">{{ Auth::user()->name }}</span>
-                                            </a>
-                                        </div>
-                                        <div class="menu-item">
-                                            <form method="POST" action="{{ route('logout') }}">
-                                                @csrf
-                                                <a class="menu-link" href="{{ route('logout') }}"
-                                                   onclick="event.preventDefault(); this.closest('form').submit();">
-                                                    <span class="menu-icon"><i class="ki-duotone ki-logout fs-2"></i></span>
-                                                    <span class="menu-title">Logout</span>
-                                                </a>
-                                            </form>
-                                        </div>
-                                    @else
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('login') }}">
-                                                <span class="menu-icon"><i class="ki-duotone ki-login fs-2"></i></span>
-                                                <span class="menu-title">Login</span>
-                                            </a>
-                                        </div>
-                                    @endif
-                                </div>
-                                <!--end:Menu sub-->
-                            </div>
                             <!--end::User item-->
 
                         </div>
@@ -175,18 +134,7 @@
                                  data-kt-search-enter="enter" data-kt-search-layout="menu" data-kt-menu-trigger="auto"
                                  data-kt-menu-overflow="false" data-kt-menu-permanent="true"
                                  data-kt-menu-placement="bottom-end">
-                                <!--begin::Search toggle-->
-                                <div class="d-flex align-items-center" data-kt-search-element="toggle"
-                                     id="kt_header_search_toggle">
-                                    <div
-                                        class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px">
-                                        <i class="ki-duotone ki-magnifier fs-2 fs-lg-1">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </div>
-                                </div>
-                                <!--end::Search toggle-->
+
                                 <!--begin::Menu-->
                                 <div data-kt-search-element="content"
                                      class="menu menu-sub menu-sub-dropdown p-7 w-325px w-md-375px">
@@ -944,27 +892,8 @@
                             <!--end::Search-->
                         </div>
                         <!--end::Search-->
-                        <!--begin::Activities-->
-                        <!--end::Activities-->
-                        <!--begin::Notifications-->
-                        <!--end::Notifications-->
-                        <!--begin::Chat-->
-                        <div class="app-navbar-item ms-1 ms-md-3">
-                            <!--begin::Menu wrapper-->
-                            <div
-                                class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px position-relative"
-                                id="kt_drawer_chat_toggle">
-                                <i class="ki-duotone ki-message-text-2 fs-2 fs-lg-1">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                </i>
-                                <span
-                                    class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink"></span>
-                            </div>
-                            <!--end::Menu wrapper-->
-                        </div>
-                        <!--end::Chat-->
+
+
                         <!--begin::My apps links-->
                         <!--end::My apps links-->
                         <!--begin::Theme mode-->
@@ -1052,6 +981,56 @@
                         </div>
                         <!--end::Theme mode-->
                         <!--begin::User menu-->
+                        <div class="app-navbar-item ms-1 ms-md-3" id="kt_header_user_menu_toggle">
+                            <!--begin::Menu wrapper-->
+                            <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
+                                 data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
+                                 data-kt-menu-placement="bottom-end">
+                                <img src="/finance/src/media/avatars/300-1.jpg" alt="user"/>
+                            </div>
+                            <!--begin::User account menu-->
+                            <div
+                                class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
+                                data-kt-menu="true">
+                                @if(Auth::check())
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <div class="menu-content d-flex align-items-center px-3">
+                                        <!--begin::Avatar-->
+                                        <div class="symbol symbol-50px me-5">
+                                            <img alt="Logo" src="/finance/src/media/avatars/300-1.jpg"/>
+                                        </div>
+                                        <!--end::Avatar-->
+                                        <!--begin::Username-->
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}
+
+                                            </div>
+                                        </div>
+                                        <!--end::Username-->
+                                    </div>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu separator-->
+                                <div class="separator my-2"></div>
+                                <!--end::Menu separator-->
+                                <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <a class="menu-link px-5" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="menu-item px-5">
+                                        <a class="menu-link px-5" href="{{ route('login') }}">Login</a>
+                                    </div>
+                                @endif                                <!--end::Menu item-->
+                            </div>
+                            <!--end::User account menu-->
+                            <!--end::Menu wrapper-->
+                        </div>
+
                         <!--end::User menu-->
                         <!--begin::Header menu toggle-->
                         <div class="app-navbar-item d-lg-none ms-2 me-n2" title="Show header menu">
@@ -1150,235 +1129,7 @@
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="../../finance/dist/dashboards/ecommerce.html">
-													<span class="menu-bullet">
-														<span class="bullet bullet-dot"></span>
-													</span>
-                                            <span class="menu-title">eCommerce</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="../../finance/dist/dashboards/projects.html">
-													<span class="menu-bullet">
-														<span class="bullet bullet-dot"></span>
-													</span>
-                                            <span class="menu-title">Projects</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="../../finance/dist/dashboards/online-courses.html">
-													<span class="menu-bullet">
-														<span class="bullet bullet-dot"></span>
-													</span>
-                                            <span class="menu-title">Online Courses</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="../../finance/dist/dashboards/marketing.html">
-													<span class="menu-bullet">
-														<span class="bullet bullet-dot"></span>
-													</span>
-                                            <span class="menu-title">Marketing</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <div class="menu-inner flex-column collapse"
-                                         id="kt_app_sidebar_menu_dashboards_collapse">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="../../finance/dist/dashboards/bidding.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Bidding</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="../../finance/dist/dashboards/pos.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">POS System</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="../../finance/dist/dashboards/call-center.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Call Center</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="../../finance/dist/dashboards/logistics.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Logistics</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                               href="../../finance/dist/dashboards/website-analytics.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Website Analytics</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                               href="../../finance/dist/dashboards/finance-performance.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Finance Performance</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                               href="../../finance/dist/dashboards/store-analytics.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Store Analytics</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="../../finance/dist/dashboards/social.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Social</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="../../finance/dist/dashboards/delivery.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Delivery</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="../../finance/dist/dashboards/crypto.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Crypto</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="../../finance/dist/dashboards/school.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">School</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="../../finance/dist/dashboards/podcast.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Podcast</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="../../finance/dist/landing.html">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                                                <span class="menu-title">Landing</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                    </div>
-                                    <div class="menu-item">
-                                        <div class="menu-content">
-                                            <a class="btn btn-flex btn-color-primary d-flex flex-stack fs-base p-0 ms-2 mb-2 toggle collapsible collapsed"
-                                               data-bs-toggle="collapse" href="#kt_app_sidebar_menu_dashboards_collapse"
-                                               data-kt-toggle-text="Show Less">
-                                                <span data-kt-toggle-text-target="true">Show 12 More</span>
-                                                <i class="ki-duotone ki-minus-square toggle-on fs-2 me-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                                <i class="ki-duotone ki-plus-square toggle-off fs-2 me-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <!--end:Menu sub-->
                             </div>
