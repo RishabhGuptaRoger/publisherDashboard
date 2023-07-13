@@ -3397,6 +3397,12 @@
                                 <!--end:Menu sub-->
                             </div>
                             <!--end:Menu item-->
+
+
+{{--                            <!--jetsream login/logout--!>--}}
+                            <!-- begin: User Menu -->
+                            <!-- end: User Menu -->
+
                         </div>
                         <!--end::Menu-->
                     </div>

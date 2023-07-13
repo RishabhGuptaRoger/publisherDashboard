@@ -84,7 +84,6 @@ class ShowDocs extends Component
         $this->start_date = $doc->start_date;
         $this->end_date = $doc->end_date;
         $this->geos = $doc->geos;
-
         $this->mode = 'edit';
         $this->openModal();
     }
@@ -111,7 +110,6 @@ class ShowDocs extends Component
 
             // Upload new file
             $filePath = $this->file->store('advertiser', 'public'); // Store the new file
-
             $this->uploadSuccessful = true; // Set uploadSuccessful to true
         }
 
