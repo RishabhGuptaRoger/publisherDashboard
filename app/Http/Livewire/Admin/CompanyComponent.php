@@ -16,6 +16,7 @@ class CompanyComponent extends Component
     public $mode = 'create';
     public $company_id;
     public $payment_terms = 'prepaid';
+
     public function render()
     {
         return view('livewire.admin.company-component', [

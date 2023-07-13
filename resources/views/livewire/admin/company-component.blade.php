@@ -77,6 +77,7 @@
                         </div>
                     </div>
 
+
                     <div class="mb-4">
                         <label for="companyNickname" class="text-gray-700 text-sm font-bold mb-2">Company
                             Nickname:</label>
