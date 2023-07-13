@@ -58,7 +58,7 @@ class ShowDocs extends Component
         if($this->file) {
             $filePath = $this->file->store('advertiser', 'public');
 
-            $this->company->doc()->create([
+            $this->company->docs()->create([
                 'start_date' => $this->start_date,
                 'end_date' => $this->end_date,
                 'geos' => $this->geos,
