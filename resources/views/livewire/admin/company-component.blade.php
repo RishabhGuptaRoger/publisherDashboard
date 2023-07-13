@@ -69,7 +69,7 @@
                     <div class="mb-4">
                         <label class="text-gray-700 text-sm font-bold mb-2">Role:</label>
                         <div>
-                            <select name="relation" wire:model.defer="relation">
+                            <select class="form-select" data-control="select2" name="relation" wire:model.defer="relation">
                                 <option value="0">Advertiser</option>
                                 <option value="1">Publisher</option>
                                 <option value="2">Affiliate</option>
@@ -107,7 +107,7 @@
                     <div class="mb-4">
                         <label class="text-gray-700 text-sm font-bold mb-2">Payment Terms:</label>
                         <div>
-                            <select name="paymentTerms" wire:model.defer="payment_terms">
+                            <select class="form-select" data-control="select2"  name="paymentTerms" wire:model.defer="payment_terms">
                                 <option value="prepaid">Prepaid</option>
                                 <option value="days7">Postpaid - 7 days</option>
                                 <option value="days15">Postpaid - 15 days</option>
