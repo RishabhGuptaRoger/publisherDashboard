@@ -55,9 +55,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://finance.gamess4u.com'),
-    'asset_url' => env('ASSET_URL', 'https://finance.gamess4u.com'),
+    'url' => env('APP_URL', 'http://localhost'),
 
+    'asset_url' => env('ASSET_URL'),
 
     /*
     |--------------------------------------------------------------------------

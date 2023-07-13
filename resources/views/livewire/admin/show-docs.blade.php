@@ -114,7 +114,7 @@
                 <td>{{ $doc->geos }}</td>
                 <td>
                     @if($doc->file_path)
-                    <a href="{{ Storage::url($doc->file_path) }}" target="_blank">View File</a>
+                    <a href="//{{ Storage::url($doc->file_path) }}" target="_blank">View File</a>
                     @endif
                 </td>
                 <td>
