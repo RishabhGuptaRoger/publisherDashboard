@@ -24,8 +24,8 @@ class Offer extends Model
     /**
      * Get the user that owns the offer.
      */
-    public function user()
+    public function company()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Company::class);
     }
 }

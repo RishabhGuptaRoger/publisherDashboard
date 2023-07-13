@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Admin\Advertiser;
+use App\Http\Livewire\Admin\CompanyComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\ShowOffers;
 use App\Http\Livewire\Admin\ShowDocs;
@@ -31,8 +31,8 @@ Route::middleware([
 
     Route::prefix('admin')->group(function () {
 
-        Route::get('/advertiser', function () {
-            return view('admin.advertiser');
+        Route::get('/company', function () {
+            return view('admin.company-component');
         })->name('advertiser');
 
         Route::get('show-offers/{id}', function($id) {

@@ -19,6 +19,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -30,7 +31,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -60,14 +60,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    public function offers()
-    {
-        return $this->hasMany(Offer::class);
-    }
 
-    public function doc()
+    public function company()
     {
-        return $this->hasMany(Doc::class);
+        return $this->belongsTo(Company::class);
     }
-
 }

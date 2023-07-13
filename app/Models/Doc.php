@@ -17,8 +17,8 @@ class Doc extends Model
         'file_path',
     ];
 
-    public function user()
+    public function company()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Company::class);
     }
 }

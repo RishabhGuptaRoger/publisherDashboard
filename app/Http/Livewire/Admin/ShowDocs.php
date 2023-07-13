@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Models\User;
+use App\Models\Company;
 use App\Models\Doc;
 use Illuminate\Support\Facades\Storage;
 use Exception;
@@ -13,7 +13,7 @@ class ShowDocs extends Component
 {
     use WithFileUploads;
 
-    public $user;
+    public $company;
     public $isOpen = false;
     public $start_date;
     public $end_date;
@@ -24,9 +24,9 @@ class ShowDocs extends Component
     public $file;
     public $uploadSuccessful = false;
 
-    public function mount(User $user)
+    public function mount(company $company)
     {
-        $this->user = $user;
+        $this->company = $company;
     }
 
     public function openModal()
@@ -58,7 +58,7 @@ class ShowDocs extends Component
         if($this->file) {
             $filePath = $this->file->store('advertiser', 'public');
 
-            $this->user->doc()->create([
+            $this->company->doc()->create([
                 'start_date' => $this->start_date,
                 'end_date' => $this->end_date,
                 'geos' => $this->geos,
@@ -149,7 +149,7 @@ class ShowDocs extends Component
     public function render()
     {
         return view('livewire.admin.show-docs', [
-            'docs' => $this->user->doc()->paginate(10),
+            'docs' => $this->company->docs()->paginate(10),
         ]);
     }
 }

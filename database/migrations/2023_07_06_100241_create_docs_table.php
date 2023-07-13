@@ -10,13 +10,12 @@ class CreateDocsTable extends Migration
     {
         Schema::create('docs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->date('start_date');
             $table->date('end_date');
             $table->text('geos');
             $table->string('file_path')->nullable();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

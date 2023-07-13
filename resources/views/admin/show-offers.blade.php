@@ -39,7 +39,7 @@
             <!--begin::Row-->
             <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                 {{-- begin content--}}
-                @livewire('admin.show-offers', ['user' => $id])
+                @livewire('admin.show-offers', ['company' => $id])
             </div>
         </div>
         <!--end::Content container-->

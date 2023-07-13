@@ -39,7 +39,7 @@
             <!--begin::Row-->
             <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                 {{-- begin content--}}
-                @livewire('admin.advertiser')
+                @livewire('admin.company-component')
             </div>
         </div>
         <!--end::Content container-->

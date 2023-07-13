@@ -1,5 +1,5 @@
 <div>
-    <h2>Documents for {{ $user->name }}</h2>
+    <h2>Documents for {{ $company->company_name }}</h2>
 
     <!-- Display Session Messages -->
     @if (session()->has('message'))

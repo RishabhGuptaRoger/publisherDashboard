@@ -3,12 +3,12 @@
 namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
-use App\Models\User;
+use App\Models\Company;
 use App\Models\Offer;
 
 class ShowOffers extends Component
 {
-    public $user;
+    public $company;
     public $isOpen = false;
     public $name;
     public $geo = 'all';
@@ -16,9 +16,9 @@ class ShowOffers extends Component
     public $offer_id;
     public $mode = 'create';
 
-    public function mount(User $user)
+    public function mount(company $company)
     {
-        $this->user = $user;
+        $this->company = $company;
     }
 
     public function openModal()
@@ -47,7 +47,7 @@ class ShowOffers extends Component
             'payout' => 'required|numeric',
         ]);
 
-        $this->user->offers()->create([
+        $this->company->offers()->create([
             'name' => $this->name,
             'geo' => $this->geo,
             'payout' => $this->payout,
@@ -110,7 +110,7 @@ class ShowOffers extends Component
     public function render()
     {
         return view('livewire.admin.show-offers', [
-            'offers' => $this->user->offers()->paginate(10),
+            'offers' => $this->company->offers()->paginate(10),
         ]);
     }
 }
