@@ -72,9 +72,12 @@
             </div>
         </div>
     @endif
+    @if(!$isOpen)
+
     <button wire:click="openModals" type="button" class="btn btn-primary" data-bs-toggle="modal">
         Add Offer
     </button>
+    @endif
     <table class="table">
         <thead>
         <tr class="fw-bold fs-6 text-gray-800">

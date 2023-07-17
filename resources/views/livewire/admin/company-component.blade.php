@@ -122,9 +122,11 @@
             </div>
         </div>
     @endif
-    <button wire:click="openModals()" type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-top: 20px">
-        Add Company
-    </button>
+    @if(!$isOpen)
+        <button wire:click="openModals()" type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-top: 20px">
+            Add Company
+        </button>
+    @endif
     <table class="table table-striped table-bordered table-hover mb-10">
         <thead>
         <tr class="fw-bold fs-6 text-gray-800">
@@ -169,19 +171,18 @@
                 <td>{{ $advertiser->payment_terms }}</td>
                 <td>
                     <div class="d-grid gap-2">
-                        <button type="button" wire:click="edit({{ $advertiser->id }})" class="btn btn-light-primary">
+                        <button type="button" wire:click="edit({{ $advertiser->id }})" class="btn btn-light-primary btn-sm">
                             Edit
                         </button>
                         <button type="button" wire:click.prevent="delete({{ $advertiser->id }})"
-                                class="btn btn-light-danger">Delete
+                                class="btn btn-light-danger btn-sm">Delete
                         </button>
-                        <a href="{{ route('admin.show-docs',$advertiser->id) }}" class="btn btn-light-info">Open
+                        <a href="{{ route('admin.show-docs',$advertiser->id) }}" class="btn btn-light-info btn-sm">Open
                             Docs</a>
-                        <a href="{{ route('admin.show-offers', $advertiser->id) }}" class="btn btn-light-info">View
+                        <a href="{{ route('admin.show-offers', $advertiser->id) }}" class="btn btn-light-info btn-sm">View
                             Offers</a>
                     </div>
-                </td>
-            </tr>
+                </td>            </tr>
         @endforeach
         </tbody>
     </table>

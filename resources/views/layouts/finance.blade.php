@@ -791,7 +791,7 @@
                                             <div class="col-6">
                                                 <input type="number" name="date_number"
                                                        class="form-control form-control-sm form-control-solid"
-                                                       placeholder="Lenght" value=""/>
+                                                       placeholder="Length" value=""/>
                                             </div>
                                             <!--end::Col-->
                                             <!--begin::Col-->
@@ -993,32 +993,33 @@
                                 class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
                                 data-kt-menu="true">
                                 @if(Auth::check())
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <div class="menu-content d-flex align-items-center px-3">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol symbol-50px me-5">
-                                            <img alt="Logo" src="/finance/src/media/avatars/300-1.jpg"/>
-                                        </div>
-                                        <!--end::Avatar-->
-                                        <!--begin::Username-->
-                                        <div class="d-flex flex-column">
-                                            <div class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}
-
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <div class="menu-content d-flex align-items-center px-3">
+                                            <!--begin::Avatar-->
+                                            <div class="symbol symbol-50px me-5">
+                                                <img alt="Logo" src="/finance/src/media/avatars/300-1.jpg"/>
                                             </div>
+                                            <!--end::Avatar-->
+                                            <!--begin::Username-->
+                                            <div class="d-flex flex-column">
+                                                <div
+                                                    class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}
+                                                </div>
+                                            </div>
+                                            <!--end::Username-->
                                         </div>
-                                        <!--end::Username-->
                                     </div>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu separator-->
-                                <div class="separator my-2"></div>
-                                <!--end::Menu separator-->
-                                <!--begin::Menu item-->
+                                    <!--end::Menu item-->
+                                    <!--begin::Menu separator-->
+                                    <div class="separator my-2"></div>
+                                    <!--end::Menu separator-->
+                                    <!--begin::Menu item-->
                                     <div class="menu-item px-5">
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
-                                            <a class="menu-link px-5" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                                            <a class="menu-link px-5" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
                                         </form>
                                     </div>
                                 @else
@@ -1074,7 +1075,7 @@
                 1. "src/js/layout/sidebar.js" adds "sidebar_minimize_state" cookie value to save the sidebar minimize state.
                 2. Set data-kt-app-sidebar-minimize="on" attribute for body tag.
                 3. Set data-kt-toggle-state="active" attribute to the toggle element with "kt_app_sidebar_toggle" id.
-                4. Add "active" class to to sidebar toggle element with "kt_app_sidebar_toggle" id.
+                4. Add "active" class to sidebar toggle element with "kt_app_sidebar_toggle" id.
             }
         -->
                     <div id="kt_app_sidebar_toggle"
@@ -1161,13 +1162,14 @@
             <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                 <!--begin::Content wrapper-->
                 <div class="d-flex flex-column flex-column-fluid">
-                @yield('content')
+                    @yield('content')
                 </div>
                 <!--end::Content wrapper-->
                 <!--begin::Footer-->
                 <div id="kt_app_footer" class="app-footer">
                     <!--begin::Footer container-->
-                    <div class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
+                    <div
+                        class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
                         <!--begin::Copyright-->
                         <div class="text-dark order-2 order-md-1">
                             <span class="text-muted fw-semibold me-1">2023&copy;</span>
@@ -1183,7 +1185,8 @@
                                 <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
                             </li>
                             <li class="menu-item">
-                                <a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
+                                <a href="https://1.envato.market/EA4JP" target="_blank"
+                                   class="menu-link px-2">Purchase</a>
                             </li>
                         </ul>
                         <!--end::Menu-->
@@ -4429,7 +4432,8 @@
                                     <a href="#"
                                        class="d-flex align-items-center fs-5 fw-bold text-dark text-hover-primary">Max
                                         Smith
-                                        <span class="badge badge-light fs-8 fw-semibold ms-2">Software Enginer</span></a>
+                                        <span
+                                            class="badge badge-light fs-8 fw-semibold ms-2">Software Enginer</span></a>
                                     <!--end::Name-->
                                     <!--begin::Email-->
                                     <div class="fw-semibold text-muted">max@kt.com</div>
@@ -4543,7 +4547,8 @@
                                     <a href="#"
                                        class="d-flex align-items-center fs-5 fw-bold text-dark text-hover-primary">Mikaela
                                         Collins
-                                        <span class="badge badge-light fs-8 fw-semibold ms-2">Head Of Marketing</span></a>
+                                        <span
+                                            class="badge badge-light fs-8 fw-semibold ms-2">Head Of Marketing</span></a>
                                     <!--end::Name-->
                                     <!--begin::Email-->
                                     <div class="fw-semibold text-muted">mik@pex.com</div>
@@ -4580,7 +4585,8 @@
                                     <a href="#"
                                        class="d-flex align-items-center fs-5 fw-bold text-dark text-hover-primary">Francis
                                         Mitcham
-                                        <span class="badge badge-light fs-8 fw-semibold ms-2">Software Arcitect</span></a>
+                                        <span
+                                            class="badge badge-light fs-8 fw-semibold ms-2">Software Arcitect</span></a>
                                     <!--end::Name-->
                                     <!--begin::Email-->
                                     <div class="fw-semibold text-muted">f.mit@kpmg.com</div>
@@ -4735,7 +4741,8 @@
                                     <a href="#"
                                        class="d-flex align-items-center fs-5 fw-bold text-dark text-hover-primary">Emma
                                         Bold
-                                        <span class="badge badge-light fs-8 fw-semibold ms-2">Corporate Finance</span></a>
+                                        <span
+                                            class="badge badge-light fs-8 fw-semibold ms-2">Corporate Finance</span></a>
                                     <!--end::Name-->
                                     <!--begin::Email-->
                                     <div class="fw-semibold text-muted">emma@intenso.com</div>
@@ -4772,7 +4779,8 @@
                                     <a href="#"
                                        class="d-flex align-items-center fs-5 fw-bold text-dark text-hover-primary">Ana
                                         Crown
-                                        <span class="badge badge-light fs-8 fw-semibold ms-2">Customer Relationship</span></a>
+                                        <span
+                                            class="badge badge-light fs-8 fw-semibold ms-2">Customer Relationship</span></a>
                                     <!--end::Name-->
                                     <!--begin::Email-->
                                     <div class="fw-semibold text-muted">ana.cf@limtel.com</div>
