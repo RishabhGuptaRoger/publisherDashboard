@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Livewire\Admin;
-
+use Laravel\Jetstream\HasTeams;
 use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
-
+use Illuminate\Support\Facades\Auth;
 class CompanyComponent extends Component
 {
     use WithPagination;
@@ -16,13 +16,27 @@ class CompanyComponent extends Component
     public $mode = 'create';
     public $company_id;
     public $payment_terms = 'prepaid';
+    public $userRole;
 
     public function render()
     {
+        $user = Auth::user();
+        $currentTeam = $user->currentTeam;
+
+        if ($currentTeam) {
+
+            $this->userRole = $user->teamRole($currentTeam)->name;
+
+        } else {
+
+            $this->userRole = null;
+        }
+
         return view('livewire.admin.company-component', [
             'companys' => Company::paginate(10)
         ]);
     }
+
 
     public function create()
     {

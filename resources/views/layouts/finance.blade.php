@@ -1003,9 +1003,7 @@
                                             <!--end::Avatar-->
                                             <!--begin::Username-->
                                             <div class="d-flex flex-column">
-                                                <div
-                                                    class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}
-                                                </div>
+                                                <a href="{{ route('profile.show') }}" class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}</a>
                                             </div>
                                             <!--end::Username-->
                                         </div>

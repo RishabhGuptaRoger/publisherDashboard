@@ -148,8 +148,10 @@
         @foreach($companys as $advertiser)
             <tr>
                 <td class="text-center">
-                    <input type="checkbox" wire:click="toggleApproval({{ $advertiser->id }})"
-                           @if($advertiser->is_approved) checked @endif>
+                    @if($userRole === 'Owner')
+                        <input type="checkbox" wire:click="toggleApproval({{ $advertiser->id }})"
+                               @if($advertiser->is_approved) checked @endif>
+                    @endif
                 </td>
                 <td>{{ $advertiser->company_name }}</td>
                 <td>{{ $advertiser->company_email }}</td>
