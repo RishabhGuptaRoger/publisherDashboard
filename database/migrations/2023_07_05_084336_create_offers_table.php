@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->string('name');
+            $table->string('operators');
+            $table->string('service_name');
             $table->string('geo');
             $table->float('payout');
             $table->timestamps();

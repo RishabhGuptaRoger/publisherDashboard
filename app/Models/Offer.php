@@ -17,6 +17,8 @@ class Offer extends Model
      */
     protected $fillable = [
         'name',
+        'operators',
+        'service_name',
         'geo',
         'payout',
     ];

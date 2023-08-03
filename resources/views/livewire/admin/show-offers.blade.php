@@ -34,6 +34,21 @@
                         @error('name')
                         <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
+
+                    <div class="mb-4">
+                        <label for="operator" class="text-gray-700 text-sm font-bold mb-2">Operator:</label>
+                        <input type="text" class="form-control form-control @error('operators') is-invalid @enderror"
+                               placeholder="Operators" wire:model.defer="operators"/>
+                        @error('operators')
+                        <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    </div>
+                    <div class="mb-4">
+                        <label for="service name" class="text-gray-700 text-sm font-bold mb-2">Service Name:</label>
+                        <input type="text" class="form-control form-control @error('service name') is-invalid @enderror"
+                               placeholder="service name" wire:model.defer="service_name"/>
+                        @error('service_name')
+                        <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    </div>
                     <div class="mb-4">
                         <label for="geo" class="text-gray-700 text-sm font-bold mb-2">Geo:</label>
                         <select class="form-control @error('geo') is-invalid @enderror" wire:model.defer="geo">
@@ -82,6 +97,8 @@
         <thead>
         <tr class="fw-bold fs-6 text-gray-800">
             <th>Name</th>
+            <th>Operators</th>
+            <th>Service Names</th>
             <th>Geo</th>
             <th>Payout</th>
             <th>Action</th>
@@ -91,6 +108,8 @@
         @foreach($offers as $offer)
             <tr>
                 <td>{{ $offer->name }}</td>
+                <td>{{ $offer->operators }}</td>
+                <td>{{ $offer->service_name }}</td>
                 <td>{{ $offer->geo }}</td>
                 <td>{{ $offer->payout }}</td>
                 <td>

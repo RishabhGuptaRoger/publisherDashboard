@@ -69,7 +69,8 @@
                     <div class="mb-4">
                         <label class="text-gray-700 text-sm font-bold mb-2">Role:</label>
                         <div>
-                            <select class="form-select" data-control="select2" name="relation" wire:model.defer="relation">
+                            <select class="form-select" data-control="select2" name="relation"
+                                    wire:model.defer="relation">
                                 <option value="0">Advertiser</option>
                                 <option value="1">Publisher</option>
                                 <option value="2">Affiliate</option>
@@ -108,7 +109,8 @@
                     <div class="mb-4">
                         <label class="text-gray-700 text-sm font-bold mb-2">Payment Terms:</label>
                         <div>
-                            <select class="form-select" data-control="select2"  name="paymentTerms" wire:model.defer="payment_terms">
+                            <select class="form-select" data-control="select2" name="paymentTerms"
+                                    wire:model.defer="payment_terms">
                                 <option value="prepaid">Prepaid</option>
                                 <option value="days7">Postpaid - 7 days</option>
                                 <option value="days15">Postpaid - 15 days</option>
@@ -123,7 +125,8 @@
         </div>
     @endif
     @if(!$isOpen)
-        <button wire:click="openModals()" type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-top: 20px">
+        <button wire:click="openModals()" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                style="margin-top: 20px">
             Add Company
         </button>
     @endif
@@ -173,7 +176,8 @@
                 <td>{{ $advertiser->payment_terms }}</td>
                 <td>
                     <div class="d-grid gap-2">
-                        <button type="button" wire:click="edit({{ $advertiser->id }})" class="btn btn-light-primary btn-sm">
+                        <button type="button" wire:click="edit({{ $advertiser->id }})"
+                                class="btn btn-light-primary btn-sm">
                             Edit
                         </button>
                         <button type="button" wire:click.prevent="delete({{ $advertiser->id }})"
@@ -184,7 +188,8 @@
                         <a href="{{ route('admin.show-offers', $advertiser->id) }}" class="btn btn-light-info btn-sm">View
                             Offers</a>
                     </div>
-                </td>            </tr>
+                </td>
+            </tr>
         @endforeach
         </tbody>
     </table>
