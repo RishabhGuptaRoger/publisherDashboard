@@ -51,7 +51,7 @@ class CompanyComponent extends Component
         if ($company) {
             $offers = $company->offers->map(function ($offer) {
                 return [
-                    'name' => $offer->name,
+                    'names' => $offer->name,
                     'operators' => $offer->operators,
                     'service_name' => $offer->service_name,
                     'geo' => $offer->geo,
