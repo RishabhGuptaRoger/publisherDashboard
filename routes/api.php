@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\CompanyComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/companies/names', [CompanyComponent::class, 'getCompanyNames']);
+    Route::get('/companies/{name}/offers', [CompanyComponent::class, 'getOffersByCompanyName']);
+});
+
+
+
+

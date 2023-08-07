@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Livewire\Admin;
-
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Company;
@@ -20,7 +18,6 @@ class ShowDocs extends Component
     public $geos = 'all';
     public $doc_id;
     public $mode = 'create';
-
     public $file;
     public $uploadSuccessful = false;
 

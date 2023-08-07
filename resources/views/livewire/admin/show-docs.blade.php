@@ -89,6 +89,7 @@
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
+                        </div>
                 </form>
             </div>
         </div>
@@ -99,7 +100,7 @@
         Add Document
     </button>
     @endif
-    <table class="table">
+    <table class="table table-striped table-bordered table-hover mb-10">
         <thead>
         <tr class="fw-bold fs-6 text-gray-800">
             <th>Start Date</th>
@@ -132,5 +133,5 @@
         @endforeach
         </tbody>
     </table>
-    {{ $docs->links() }}
+    {{ $docs->links('vendor.pagination.bootstrap-4') }}
 </div>

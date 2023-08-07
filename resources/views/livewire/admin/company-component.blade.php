@@ -195,6 +195,6 @@
     </table>
 
 
-    {{ $companys->links() }}
+    {{ $companys->links('vendor.pagination.bootstrap-4') }}
 
 </div>

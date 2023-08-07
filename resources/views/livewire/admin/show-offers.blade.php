@@ -89,11 +89,11 @@
     @endif
     @if(!$isOpen)
 
-    <button wire:click="openModals" type="button" class="btn btn-primary" data-bs-toggle="modal">
-        Add Offer
-    </button>
+        <button wire:click="openModals" type="button" class="btn btn-primary" data-bs-toggle="modal">
+            Add Offer
+        </button>
     @endif
-    <table class="table">
+    <table class="table table-striped table-bordered table-hover mb-10">
         <thead>
         <tr class="fw-bold fs-6 text-gray-800">
             <th>Name</th>
@@ -124,5 +124,5 @@
         @endforeach
         </tbody>
     </table>
-    {{ $offers->links() }}
+    {{ $offers->links(('vendor.pagination.bootstrap-4')) }}
 </div>

@@ -36,6 +36,34 @@ class CompanyComponent extends Component
             'companys' => Company::paginate(10)
         ]);
     }
+    //api method
+    public function getCompanyNames()
+    {
+        $companyNames = Company::pluck('company_name');
+        return response()->json($companyNames);
+    }
+
+    //api method for offers associated with company name
+    public function getOffersByCompanyName($name)
+    {
+        $company = Company::with(['offers'])->where('company_name', $name)->first();
+
+        if ($company) {
+            $offers = $company->offers->map(function ($offer) {
+                return [
+                    'name' => $offer->name,
+                    'operators' => $offer->operators,
+                    'service_name' => $offer->service_name,
+                    'geo' => $offer->geo,
+                    'payout' => $offer->payout,
+                ];
+            });
+
+            return response()->json($offers);
+        } else {
+            return response()->json(['message' => 'Company not found'], 404);
+        }
+    }
 
 
     public function create()
