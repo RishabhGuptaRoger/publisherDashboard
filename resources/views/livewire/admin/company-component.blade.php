@@ -73,11 +73,10 @@
                                     wire:model.defer="relation">
                                 <option value="0">Advertiser</option>
                                 <option value="1">Publisher</option>
-                                <option value="2">Affiliate</option>
+                                <option value="2">Aggregator</option>
                             </select>
                         </div>
                     </div>
-
 
                     <div class="mb-4">
                         <label for="companyNickname" class="text-gray-700 text-sm font-bold mb-2">Company
@@ -124,6 +123,20 @@
             </div>
         </div>
     @endif
+    <div class="dropdown" style="float: right">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            {{ $relation !== null ? $this->getRoleName($relation) : 'Select Role' }}
+        </button>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#" wire:click="filter('0')">Advertiser</a></li>
+            <li><a class="dropdown-item" href="#" wire:click="filter('1')">Publisher</a></li>
+            <li><a class="dropdown-item" href="#" wire:click="filter('2')">Aggregator</a></li>
+        </ul>
+
+    </div>
+
     @if(!$isOpen)
         <button wire:click="openModals()" type="button" class="btn btn-primary" data-bs-toggle="modal"
                 style="margin-top: 20px">
@@ -167,7 +180,7 @@
                     @elseif ($advertiser->relation === 1)
                         Publisher
                     @elseif ($advertiser->relation === 2)
-                        Affiliate
+                        Aggregator
                     @endif
                 </td>
                 <td>{{ $advertiser->contact_person }}</td>

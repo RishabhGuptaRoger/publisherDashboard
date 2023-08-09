@@ -1,22 +1,25 @@
 <?php
 
 namespace App\Http\Livewire\Admin;
+use GuzzleHttp\Psr7\Request;
 use Laravel\Jetstream\HasTeams;
 use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+
 class CompanyComponent extends Component
 {
     use WithPagination;
 
     public $company_name, $company_nick_name, $company_email, $company_address, $contact_person, $contact_person_email, $contact_person_phone_number, $onboarded_by, $is_approved;
-    public $isOpen ,$relation= 0;
+    public $isOpen, $relation = 0;
     public $mode = 'create';
     public $company_id;
     public $payment_terms = 'prepaid';
     public $userRole;
+    public $role;
 
     public function render()
     {
@@ -24,18 +27,35 @@ class CompanyComponent extends Component
         $currentTeam = $user->currentTeam;
 
         if ($currentTeam) {
-
             $this->userRole = $user->teamRole($currentTeam)->name;
-
         } else {
-
             $this->userRole = null;
         }
 
+        // If $relation is set, filter by it; otherwise, fetch all companies
+        if ($this->relation !== null) {
+            $companys = Company::where('relation', $this->relation)->paginate(10);
+        } else {
+            $companys = Company::paginate(10);
+        }
+
+
         return view('livewire.admin.company-component', [
-            'companys' => Company::paginate(10)
+            'companys' => $companys
         ]);
     }
+
+    public function getRoleName($role)
+    {
+        $roles = [
+            '0' => 'Advertiser',
+            '1' => 'Publisher',
+            '2' => 'Aggregator',
+        ];
+
+        return $roles[$role] ?? 'Select Role';
+    }
+
     //api method
     public function getCompanyNames()
     {
@@ -99,17 +119,21 @@ class CompanyComponent extends Component
         $company->update(['is_approved' => !$company->is_approved]);
     }
 
+    public function filter($role)
+    {
+        // Update the relation to the selected role
+        $this->relation = $role;
+
+        // Reset pagination to the first page
+        $this->resetPage();
+    }
+
 
     public function openModals()
     {
         $this->isOpen = true;
         $this->resetInputFields();
         $this->mode = 'create';
-    }
-
-    public function closeModal()
-    {
-        $this->isOpen = false;
     }
 
     public function store()
@@ -119,7 +143,7 @@ class CompanyComponent extends Component
         }
         $this->validate([
             'company_name' => 'required|max:255',
-            'company_email' => 'required|email|max:255|unique:companies,company_email,'.$this->company_id,
+            'company_email' => 'required|email|max:255|unique:companies,company_email,' . $this->company_id,
             'company_address' => 'nullable|max:255',
             'contact_person' => 'nullable|max:255',
             'contact_person_email' => 'nullable|email|max:255',
@@ -148,6 +172,11 @@ class CompanyComponent extends Component
 
         $this->closeModal();
         $this->resetInputFields();
+    }
+
+    public function closeModal()
+    {
+        $this->isOpen = false;
     }
 
     public function edit($id)
