@@ -93,6 +93,8 @@
             Add Offer
         </button>
     @endif
+
+
     <table class="table table-striped table-bordered table-hover mb-10">
         <thead>
         <tr class="fw-bold fs-6 text-gray-800">

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Admin;
+
 use GuzzleHttp\Psr7\Request;
 use Laravel\Jetstream\HasTeams;
 use App\Models\Company;
@@ -13,7 +14,9 @@ class CompanyComponent extends Component
 {
     use WithPagination;
 
-    public $company_name, $company_nick_name, $company_email, $company_address, $contact_person, $contact_person_email, $contact_person_phone_number, $onboarded_by, $is_approved;
+    public $company_name, $company_nick_name, $company_email, $company_address,
+        $contact_person, $contact_person_email, $contact_person_phone_number,
+        $onboarded_by, $is_approved;
     public $isOpen, $relation = 0;
     public $mode = 'create';
     public $company_id;

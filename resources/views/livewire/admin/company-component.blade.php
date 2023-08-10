@@ -207,7 +207,6 @@
         </tbody>
     </table>
 
-
     {{ $companys->links('vendor.pagination.bootstrap-4') }}
 
 </div>

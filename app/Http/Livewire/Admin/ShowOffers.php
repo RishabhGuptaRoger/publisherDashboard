@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Models\Company;
 use App\Models\Offer;
-
+use App\Notifications\OfferNotification;
 class ShowOffers extends Component
 {
     public $company;
@@ -51,13 +51,21 @@ class ShowOffers extends Component
             'payout' => 'required|numeric',
         ]);
 
-        $this->company->offers()->create([
+        // Create the offer and get the instance
+        $offer = $this->company->offers()->create([
             'name' => $this->name,
             'operators' => $this->operators,
             'service_name' => $this->service_name,
             'geo' => $this->geo,
             'payout' => $this->payout,
         ]);
+
+        //notification code
+
+        // Notify a user
+        $user = auth()->user(); // To notify the currently logged-in user
+        $user->notify(new OfferNotification($offer));  // Passing the $offer instance here
+
 
         // Reset the form fields and close the modal
         $this->reset('name','operators','service_name', 'geo', 'payout');

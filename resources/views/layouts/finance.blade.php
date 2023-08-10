@@ -921,6 +921,15 @@
                                 </i>
                             </a>
                             <!--begin::Menu toggle-->
+                            <div class="app-navbar-item ms-1 ms-md-4">
+                                <!--begin::Menu wrapper-->
+                                <div class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px position-relative" id="kt_drawer_chat_toggle">
+                                    <i class="ki-duotone ki-message-text-2 fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                    <span class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink">
+            </span>
+                                </div>
+                                <!--end::Menu wrapper-->
+                            </div>
                             <!--begin::Menu-->
                             <div
                                 class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px"
@@ -1050,6 +1059,7 @@
             <!--end::Header container-->
         </div>
         <!--end::Header-->
+
         <!--begin::Wrapper-->
         <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
             <!--begin::Sidebar-->
@@ -1156,6 +1166,8 @@
                 <!--end::Footer-->
             </div>
             <!--end::Sidebar-->
+
+
             <!--begin::Main-->
             <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                 <!--begin::Content wrapper-->
@@ -2035,8 +2047,7 @@
                         <!--begin::Text-->
                         <div
                             class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start"
-                            data-kt-element="message-text">How likely are you to recommend our
-                            company to your friends and family ?
+                            data-kt-element="message-text">Could you please tell me if a new offer has been created with its id
                         </div>
                         <!--end::Text-->
                     </div>
@@ -2066,234 +2077,19 @@
                         <!--begin::Text-->
                         <div
                             class="p-5 rounded bg-light-primary text-dark fw-semibold mw-lg-400px text-end"
-                            data-kt-element="message-text">Hey there, we’re just writing to let
-                            you know that you’ve been subscribed to a repository on GitHub.
+                            data-kt-element="message-text">
+                            @foreach (auth()->user()->notifications as $notification)
+                                <div>
+                                    {{ $notification->data['message'] }}
+                                </div>
+                            @endforeach
                         </div>
                         <!--end::Text-->
                     </div>
                     <!--end::Wrapper-->
                 </div>
                 <!--end::Message(out)-->
-                <!--begin::Message(in)-->
-                <div class="d-flex justify-content-start mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-start">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="/finance/src/media/avatars/300-25.jpg"/>
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Details-->
-                            <div class="ms-3">
-                                <a href="#"
-                                   class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
-                                    Cox</a>
-                                <span class="text-muted fs-7 mb-1">1 Hour</span>
-                            </div>
-                            <!--end::Details-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div
-                            class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start"
-                            data-kt-element="message-text">Ok, Understood!
-                        </div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(in)-->
-                <!--begin::Message(out)-->
-                <div class="d-flex justify-content-end mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-end">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Details-->
-                            <div class="me-3">
-                                <span class="text-muted fs-7 mb-1">2 Hours</span>
-                                <a href="#"
-                                   class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
-                            </div>
-                            <!--end::Details-->
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="/finance/src/media/avatars/300-1.jpg"/>
-                            </div>
-                            <!--end::Avatar-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div
-                            class="p-5 rounded bg-light-primary text-dark fw-semibold mw-lg-400px text-end"
-                            data-kt-element="message-text">You’ll receive notifications for all
-                            issues, pull requests!
-                        </div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(out)-->
-                <!--begin::Message(in)-->
-                <div class="d-flex justify-content-start mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-start">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="/finance/src/media/avatars/300-25.jpg"/>
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Details-->
-                            <div class="ms-3">
-                                <a href="#"
-                                   class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
-                                    Cox</a>
-                                <span class="text-muted fs-7 mb-1">3 Hours</span>
-                            </div>
-                            <!--end::Details-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div
-                            class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start"
-                            data-kt-element="message-text">You can unwatch this repository
-                            immediately by clicking here:
-                            <a href="https://keenthemes.com">Keenthemes.com</a></div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(in)-->
-                <!--begin::Message(out)-->
-                <div class="d-flex justify-content-end mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-end">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Details-->
-                            <div class="me-3">
-                                <span class="text-muted fs-7 mb-1">4 Hours</span>
-                                <a href="#"
-                                   class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
-                            </div>
-                            <!--end::Details-->
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="/finance/src/media/avatars/300-1.jpg"/>
-                            </div>
-                            <!--end::Avatar-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div
-                            class="p-5 rounded bg-light-primary text-dark fw-semibold mw-lg-400px text-end"
-                            data-kt-element="message-text">Most purchased Business courses
-                            during this sale!
-                        </div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(out)-->
-                <!--begin::Message(in)-->
-                <div class="d-flex justify-content-start mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-start">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="/finance/src/media/avatars/300-25.jpg"/>
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Details-->
-                            <div class="ms-3">
-                                <a href="#"
-                                   class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
-                                    Cox</a>
-                                <span class="text-muted fs-7 mb-1">5 Hours</span>
-                            </div>
-                            <!--end::Details-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div
-                            class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start"
-                            data-kt-element="message-text">Company BBQ to celebrate the last
-                            quater achievements and goals. Food and drinks provided
-                        </div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(in)-->
-                <!--begin::Message(template for out)-->
-                <div class="d-flex justify-content-end mb-10 d-none"
-                     data-kt-element="template-out">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-end">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Details-->
-                            <div class="me-3">
-                                <span class="text-muted fs-7 mb-1">Just now</span>
-                                <a href="#"
-                                   class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
-                            </div>
-                            <!--end::Details-->
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="/finance/src/media/avatars/300-1.jpg"/>
-                            </div>
-                            <!--end::Avatar-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div
-                            class="p-5 rounded bg-light-primary text-dark fw-semibold mw-lg-400px text-end"
-                            data-kt-element="message-text"></div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(template for out)-->
-                <!--begin::Message(template for in)-->
-                <div class="d-flex justify-content-start mb-10 d-none"
-                     data-kt-element="template-in">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-start">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="/finance/src/media/avatars/300-25.jpg"/>
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Details-->
-                            <div class="ms-3">
-                                <a href="#"
-                                   class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
-                                    Cox</a>
-                                <span class="text-muted fs-7 mb-1">Just now</span>
-                            </div>
-                            <!--end::Details-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div
-                            class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start"
-                            data-kt-element="message-text">Right before vacation season we have
-                            the next Big Deal for you.
-                        </div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(template for in)-->
+
             </div>
             <!--end::Messages-->
         </div>
