@@ -123,19 +123,33 @@
             </div>
         </div>
     @endif
-    <div class="dropdown" style="float: right">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-            {{ $relation !== null ? $this->getRoleName($relation) : 'Select Role' }}
-        </button>
+    <div class="row" style="justify-content: flex-end; align-items: center;">
+        <!-- Role Dropdown -->
+        <div class="col-auto">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ $relation !== null ? $this->getRoleName($relation) : 'Select Role' }}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#" wire:click="filter('0')">Advertiser</a></li>
+                    <li><a class="dropdown-item" href="#" wire:click="filter('1')">Publisher</a></li>
+                    <li><a class="dropdown-item" href="#" wire:click="filter('2')">Aggregator</a></li>
+                </ul>
+            </div>
+        </div>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#" wire:click="filter('0')">Advertiser</a></li>
-            <li><a class="dropdown-item" href="#" wire:click="filter('1')">Publisher</a></li>
-            <li><a class="dropdown-item" href="#" wire:click="filter('2')">Aggregator</a></li>
-        </ul>
+        <!-- Approval Filter -->
+        <div class="col-auto">
 
+            <select id="approvalFilter" wire:model="is_approved_filter" class="form-select">
+                <option value="">All</option>
+                <option value="1">Approved</option>
+                <option value="0">Not Approved</option>
+            </select>
+        </div>
     </div>
+
 
     @if(!$isOpen)
         <button wire:click="openModals()" type="button" class="btn btn-primary" data-bs-toggle="modal"

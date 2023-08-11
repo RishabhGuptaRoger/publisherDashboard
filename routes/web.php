@@ -4,6 +4,7 @@ use App\Http\Livewire\Admin\CompanyComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\ShowOffers;
 use App\Http\Livewire\Admin\ShowDocs;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,9 @@ Route::middleware([
         Route::get('show-docs/{id}', function($id) {
             return view('admin.show-docs', ['id' => $id]);
         })->name('admin.show-docs');
+
+        Route::get('company/{company}/approve', [CompanyController::class, 'approve'])->name('company.approve');
+        Route::get('company/{company}/disapprove', [CompanyController::class, 'disapprove'])->name('company.disapprove');
     });
 });
 

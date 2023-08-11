@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Admin;
-
+use App\Models\User;
 use GuzzleHttp\Psr7\Request;
 use Laravel\Jetstream\HasTeams;
 use App\Models\Company;
@@ -9,20 +9,22 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\CompanyNotification;
 
 class CompanyComponent extends Component
 {
     use WithPagination;
 
-    public $company_name, $company_nick_name, $company_email, $company_address,
-        $contact_person, $contact_person_email, $contact_person_phone_number,
-        $onboarded_by, $is_approved;
+    public   $company_name, $company_nick_name, $company_email, $company_address,
+             $contact_person, $contact_person_email, $contact_person_phone_number,
+             $onboarded_by, $is_approved;
     public $isOpen, $relation = 0;
     public $mode = 'create';
     public $company_id;
     public $payment_terms = 'prepaid';
     public $userRole;
     public $role;
+    public $is_approved_filter = null;
 
     public function render()
     {
@@ -42,6 +44,11 @@ class CompanyComponent extends Component
             $companys = Company::paginate(10);
         }
 
+        if ($this->is_approved_filter !== null) {
+            $companys = Company::where('is_approved', $this->is_approved_filter)->paginate(10);
+        } else {
+            $companys = Company::paginate(10);
+        }
 
         return view('livewire.admin.company-component', [
             'companys' => $companys
@@ -157,7 +164,7 @@ class CompanyComponent extends Component
             'payment_terms' => 'required|in:prepaid,days7,days15,days30,days60,days90',
         ]);
 
-        Company::updateOrCreate(['id' => $this->company_id], [
+        $company = Company::updateOrCreate(['id' => $this->company_id], [
             'company_name' => $this->company_name,
             'company_nick_name' => $this->company_nick_name,
             'company_email' => $this->company_email,
@@ -170,12 +177,17 @@ class CompanyComponent extends Component
             'payment_terms' => $this->payment_terms,
         ]);
 
+        $admin = User::where('is_admin', true)->first();
+        if ($admin) {
+            $admin->notify(new CompanyNotification($company));
+        }
 
         session()->flash('message', $this->company_id ? 'Company updated successfully.' : 'Company created successfully.');
 
         $this->closeModal();
         $this->resetInputFields();
     }
+
 
     public function closeModal()
     {

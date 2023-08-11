@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,12 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        // Check if user exists
+        $user = User::where('email', 'rayblaze12@gmail.com')->first();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // If user doesn't exist, create them and set as admin
+        if (!$user) {
+            User::create([
+                'name' => 'Rishabh',
+                'email' => 'rayblaze12@gmail.com',
+                'password' => bcrypt('digifish'),
+                'is_admin' => true,
+            ]);
+        } else {
+            // If user exists, ensure they're set as admin
+            $user->update(['is_admin' => true]);
+        }
     }
 }
-

@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Company;
 use App\Models\Offer;
 use App\Notifications\OfferNotification;
+
 class ShowOffers extends Component
 {
     public $company;
@@ -23,15 +24,10 @@ class ShowOffers extends Component
         $this->company = $company;
     }
 
-    public function openModal()
-    {
-        $this->isOpen = true;
-    }
-
     public function openModals()
     {
         $this->isOpen = true;
-        $this->reset('name','operators','service_name', 'geo', 'payout');
+        $this->reset('name', 'operators', 'service_name', 'geo', 'payout');
         $this->mode = 'create';
     }
 
@@ -45,7 +41,7 @@ class ShowOffers extends Component
         // Validate and store the new offer
         $this->validate([
             'name' => 'required',
-            'operators'=> 'required',
+            'operators' => 'required',
             'service_name' => 'required',
             'geo' => 'required',
             'payout' => 'required|numeric',
@@ -60,7 +56,6 @@ class ShowOffers extends Component
             'payout' => $this->payout,
         ]);
 
-        //notification code
 
         // Notify a user
         $user = auth()->user(); // To notify the currently logged-in user
@@ -68,7 +63,7 @@ class ShowOffers extends Component
 
 
         // Reset the form fields and close the modal
-        $this->reset('name','operators','service_name', 'geo', 'payout');
+        $this->reset('name', 'operators', 'service_name', 'geo', 'payout');
         $this->isOpen = false;
         $this->mode = 'create';
 
@@ -91,12 +86,17 @@ class ShowOffers extends Component
         $this->openModal();
     }
 
+    public function openModal()
+    {
+        $this->isOpen = true;
+    }
+
     public function updateOffer()
     {
         // Validate and update the offer
         $this->validate([
             'name' => 'required',
-            'operators'=> 'required',
+            'operators' => 'required',
             'service_name' => 'required',
             'geo' => 'required',
             'payout' => 'required|numeric',
