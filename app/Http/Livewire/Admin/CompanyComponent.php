@@ -18,7 +18,8 @@ class CompanyComponent extends Component
     public   $company_name, $company_nick_name, $company_email, $company_address,
              $contact_person, $contact_person_email, $contact_person_phone_number,
              $onboarded_by, $is_approved;
-    public $isOpen, $relation = 0;
+    public $isOpen;
+    public $relation = null;
     public $mode = 'create';
     public $company_id;
     public $payment_terms = 'prepaid';
@@ -37,18 +38,18 @@ class CompanyComponent extends Component
             $this->userRole = null;
         }
 
-        // If $relation is set, filter by it; otherwise, fetch all companies
+        $companysQuery = Company::query();
+
         if ($this->relation !== null) {
-            $companys = Company::where('relation', $this->relation)->paginate(10);
-        } else {
-            $companys = Company::paginate(10);
+            $companysQuery->where('relation', $this->relation);
         }
 
         if ($this->is_approved_filter !== null) {
-            $companys = Company::where('is_approved', $this->is_approved_filter)->paginate(10);
-        } else {
-            $companys = Company::paginate(10);
+            $companysQuery->where('is_approved', $this->is_approved_filter);
         }
+
+        $companys = $companysQuery->paginate(10);
+
 
         return view('livewire.admin.company-component', [
             'companys' => $companys
@@ -129,7 +130,7 @@ class CompanyComponent extends Component
         $company->update(['is_approved' => !$company->is_approved]);
     }
 
-    public function filter($role)
+    public function filterByRole($role)
     {
         // Update the relation to the selected role
         $this->relation = $role;

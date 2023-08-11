@@ -132,9 +132,9 @@
                     {{ $relation !== null ? $this->getRoleName($relation) : 'Select Role' }}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#" wire:click="filter('0')">Advertiser</a></li>
-                    <li><a class="dropdown-item" href="#" wire:click="filter('1')">Publisher</a></li>
-                    <li><a class="dropdown-item" href="#" wire:click="filter('2')">Aggregator</a></li>
+                    <li><a class="dropdown-item" href="#" wire:click="filterByRole('0')">Advertiser</a></li>
+                    <li><a class="dropdown-item" href="#" wire:click="filterByRole('1')">Publisher</a></li>
+                    <li><a class="dropdown-item" href="#" wire:click="filterByRole('2')">Aggregator</a></li>
                 </ul>
             </div>
         </div>
