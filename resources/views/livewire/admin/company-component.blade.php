@@ -123,34 +123,6 @@
             </div>
         </div>
     @endif
-    <div class="row" style="justify-content: flex-end; align-items: center;">
-        <!-- Role Dropdown -->
-        <div class="col-auto">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ $relation !== null ? $this->getRoleName($relation) : 'Select Role' }}
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#" wire:click="filterByRole('0')">Advertiser</a></li>
-                    <li><a class="dropdown-item" href="#" wire:click="filterByRole('1')">Publisher</a></li>
-                    <li><a class="dropdown-item" href="#" wire:click="filterByRole('2')">Aggregator</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Approval Filter -->
-        <div class="col-auto">
-
-            <select id="approvalFilter" wire:model="is_approved_filter" class="form-select">
-                <option value="">All</option>
-                <option value="1">Approved</option>
-                <option value="0">Not Approved</option>
-            </select>
-        </div>
-    </div>
-
-
     @if(!$isOpen)
         <button wire:click="openModals()" type="button" class="btn btn-primary" data-bs-toggle="modal"
                 style="margin-top: 20px">
@@ -175,7 +147,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($companys as $advertiser)
+        @foreach($companies as $advertiser)
             <tr>
                 <td class="text-center">
                     @if($userRole === 'Owner')
@@ -221,6 +193,6 @@
         </tbody>
     </table>
 
-    {{ $companys->links('vendor.pagination.bootstrap-4') }}
+{{--    {{ $companys->links('vendor.pagination.bootstrap-4') }}--}}
 
 </div>

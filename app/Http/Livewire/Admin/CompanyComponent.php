@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Admin;
+
 use App\Models\User;
 use GuzzleHttp\Psr7\Request;
 use Laravel\Jetstream\HasTeams;
@@ -15,9 +16,9 @@ class CompanyComponent extends Component
 {
     use WithPagination;
 
-    public   $company_name, $company_nick_name, $company_email, $company_address,
-             $contact_person, $contact_person_email, $contact_person_phone_number,
-             $onboarded_by, $is_approved;
+    public $company_name, $company_nick_name, $company_email, $company_address,
+        $contact_person, $contact_person_email, $contact_person_phone_number,
+        $onboarded_by, $is_approved;
     public $isOpen;
     public $relation = null;
     public $mode = 'create';
@@ -30,29 +31,11 @@ class CompanyComponent extends Component
     public function render()
     {
         $user = Auth::user();
-        $currentTeam = $user->currentTeam;
 
-        if ($currentTeam) {
-            $this->userRole = $user->teamRole($currentTeam)->name;
-        } else {
-            $this->userRole = null;
-        }
-
-        $companysQuery = Company::query();
-
-        if ($this->relation !== null) {
-            $companysQuery->where('relation', $this->relation);
-        }
-
-        if ($this->is_approved_filter !== null) {
-            $companysQuery->where('is_approved', $this->is_approved_filter);
-        }
-
-        $companys = $companysQuery->paginate(10);
-
+        $companies = Company::where('id', $user->company_id)->get();
 
         return view('livewire.admin.company-component', [
-            'companys' => $companys
+            'companies' => $companies
         ]);
     }
 
